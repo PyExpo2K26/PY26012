@@ -1067,3 +1067,134 @@
             margin-top: 6rem;
             padding-bottom: 4rem;
         }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 243, 255, 0.02);
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+            color: var(--accent-primary);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: var(--text-secondary);
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            /* Adjust as needed */
+            padding-bottom: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">EvidenX</div>
+        <ul class="nav-links">
+            <li><a onclick="switchPage('dashboard')" class="nav-link active">Dashboard</a></li>
+            <li><a onclick="switchPage('history')" class="nav-link">History</a></li>
+            <li><a onclick="switchPage('settings')" class="nav-link">Settings</a></li>
+            <li><a onclick="switchPage('api')" class="nav-link">API Docs</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard" class="page active">
+            <div class="header">
+                <h1>Digital Forgery Detection System</h1>
+                <p>Detect AI-Generated Deepfakes & Digital Forgeries with Blockchain Verification</p>
+                <span class="badge">Powered by ML + CyberForensic + Blockchain</span>
+            </div>
+
+            <div class="main-grid">
+                <!-- Upload Section -->
+                <div>
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon"></div>
+                        <div class="upload-text">
+                            <h3>Drop Your File Here</h3>
+                            <p>or click to browse</p>
+                        </div>
+                        <div class="file-types">
+                            <div class="file-type">Images</div>
+                            <div class="file-type">Videos</div>
+                            <div class="file-type">Audio</div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*,video/*,audio/*">
+                    </div>
+                </div>
+
+                <!-- Analysis Progress -->
+                <div>
+                    <div class="analysis-container">
+                        <div class="analysis-title">
+                            <span class="spinner"></span>
+                            Analyzing Media...
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>EXIF Metadata</span>
+                                <span id="prog1">0%</span>
+                            </div>
+                            <div class="progress-bar">
