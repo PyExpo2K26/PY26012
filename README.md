@@ -26,70 +26,70 @@
 ### Forensic Analysis Modules
 
 #### EXIF Metadata Analysis
-- Reads camera, time, GPS, software traces
-- Detects timestamp mismatches, editing tools, spoofed metadata
-- Helps verify authenticity & timeline
+     - Reads camera, time, GPS, software traces
+     - Detects timestamp mismatches, editing tools, spoofed metadata
+     - Helps verify authenticity & timeline
 
 #### Error Level Analysis (ELA)
-- Highlights compression differences
-- Creates heatmap of edited/spliced regions
-- Effective against copy-paste & subtle AI edits
+     - Highlights compression differences
+     - Creates heatmap of edited/spliced regions
+     - Effective against copy-paste & subtle AI edits
 
 #### Copy-Move Detection
-- Finds duplicated areas within the same image
-- Works even after scaling, rotation, minor edits
-- Exposes object removal / addition forgeries
+     - Finds duplicated areas within the same image
+     - Works even after scaling, rotation, minor edits
+     - Exposes object removal / addition forgeries
 
 #### CNN Classification
-- Deep learning model for deepfake detection
-- Spots unnatural faces, blending artifacts, frequency issues
-- Outputs confidence score (e.g. 92% fake)
+     - Deep learning model for deepfake detection
+     - Spots unnatural faces, blending artifacts, frequency issues
+     - Outputs confidence score (e.g. 92% fake)
 
 ### Progress Tracking UI
-- Real-time progress bars (EXIF · ELA · Copy-Move · CNN)
-- Estimated time remaining
-- Step-by-step logs & indicators
+     - Real-time progress bars (EXIF · ELA · Copy-Move · CNN)
+     - Estimated time remaining
+     - Step-by-step logs & indicators
 
 ### Result Visualization
-- Overall forgery risk score
-- Per-module confidence
-- Final verdict (Authentic / Suspicious / Fake)
-- Risk badges (High / Medium / Low)
+     - Overall forgery risk score
+     - Per-module confidence
+     - Final verdict (Authentic / Suspicious / Fake)
+     - Risk badges (High / Medium / Low)
 
 ### Heatmap Visualization
-- Zoomable suspicious-region heatmap
-- Red = high risk
-- Yellow = possible issue
-- Green = likely original
+     - Zoomable suspicious-region heatmap
+     - Red = high risk
+     - Yellow = possible issue
+     - Green = likely original
 
 ### Blockchain Verification
-- Stores SHA-256 hash on-chain
-- Shows transaction hash
-- Provides chain-of-custody proof
-- Smart-contract verifiable
+     - Stores SHA-256 hash on-chain
+     - Shows transaction hash
+     - Provides chain-of-custody proof
+     - Smart-contract verifiable
 
 ### Report Generation
-- PDF forensic report download
-- Shareable secure link
-- Analyst notes field
-- Digital signature support
+     - PDF forensic report download
+     - Shareable secure link
+     - Analyst notes field
+     - Digital signature support
 
 ### History Management
-- Saves past analyses
-- View / Download / Delete
-- Timestamped records
+     - Saves past analyses
+     - View / Download / Delete
+     - Timestamped records
 
 ### Settings
-- Dark mode
-- Animation toggle
-- Email alerts
-- File size limit
-- Auto-cleanup
+     - Dark mode
+     - Animation toggle
+     - Email alerts
+     - File size limit
+     - Auto-cleanup
 
 ### API Integration
-- REST endpoints for analysis & reports
-- Bearer token auth
-- Python & JS SDK support
+     - REST endpoints for analysis & reports
+     - Bearer token auth
+     - Python & JS SDK support
 
 ## Technology Stack – Summary
 
