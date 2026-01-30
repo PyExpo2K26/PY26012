@@ -10,7 +10,7 @@ The main goal of this project is to:
 
 # Core Features (System Capabilities)
 
-    • Multi-Media Forgery Detection
+### Multi-Media Forgery Detection
         ◦ Supports images, videos, and audio uploads
         ◦ Drag-and-drop + file browser upload
         ◦ Accepts all major media formats
