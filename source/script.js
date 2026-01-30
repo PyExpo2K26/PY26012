@@ -98,7 +98,6 @@
 
         function analyzeAnother() {
             uploadBox.style.opacity = '1';
-            uploadBox.style.opacity = '1';
             uploadBox.style.pointerEvents = 'auto';
             document.getElementById('resultsSection').style.display = 'none';
             [1, 2, 3, 4].forEach(i => {
