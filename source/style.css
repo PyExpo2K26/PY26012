@@ -897,4 +897,103 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+        .settings-section {
+            background: rgba(10, 15, 20, 0.6);
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
 
+        .setting-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .input-field {
+            background: #000;
+            border: 1px solid var(--border);
+            color: var(--accent-primary);
+            padding: 0.8rem;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        .toggle-switch {
+            background: #333;
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            position: relative;
+        }
+
+        .toggle-switch.active {
+            background: var(--accent-primary);
+        }
+
+        .toggle-switch::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: 22px;
+            height: 22px;
+            background: #000;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active::before {
+            left: 26px;
+        }
+
+        /* API Docs */
+        .code-block {
+            background: #020204;
+            border: 1px solid var(--border);
+            color: var(--warning);
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .api-endpoint {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #020204;
+            border-top: 1px solid var(--border);
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            background: rgba(10, 15, 20, 0.6);
