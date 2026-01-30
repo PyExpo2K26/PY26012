@@ -1441,3 +1441,154 @@
                 </div>
                 <div class="history-item">
                     <div class="history-info">
+              <h3>video_sample_02.mp4</h3>
+                        <p>Video | Risk: MEDIUM (65%) | 2026-01-28 13:20</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>audio_sample_03.wav</h3>
+                        <p>Audio | Risk: LOW (22%) | 2026-01-28 12:10</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PAGE -->
+        <div id="settings" class="page">
+            <div class="header">
+                <h1>Settings</h1>
+                <p>Customize your experience</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Dark Mode</strong>
+                            <p>Use dark theme for reduced eye strain</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleDarkMode(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Animations</strong>
+                            <p>Enable smooth transitions and animations</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAnimations(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Email Notifications</strong>
+                            <p>Get notified when analysis completes</p>
+                        </div>
+                        <div class="toggle-switch" onclick="toggleNotifications(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>High Risk Alerts</strong>
+                            <p>Alert on suspicious files detected</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAlerts(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>API Configuration</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Infura API Key</strong>
+                            <p>Your blockchain connection</p>
+                        </div>
+                    </div>
+                    <input type="text" class="input-field" placeholder="Enter Infura API Key" id="infuraKey">
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Max File Size (MB)</strong>
+                            <p>Maximum upload size</p>
+                        </div>
+                    </div>
+                    <input type="number" class="input-field" value="100" min="10" max="1000">
+                </div>
+
+                <div class="settings-section">
+                    <h3>Data & Privacy</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Auto-Delete Analysis</strong>
+                            <p>Delete analyses after 30 days</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAutoDelete(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn btn-secondary" onclick="exportData()">Export My Data</button>
+                        <button class="btn btn-secondary" onclick="clearCache()" style="margin-top: 1rem;">Clear
+                            Cache</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API DOCS PAGE -->
+        <div id="api" class="page">
+            <div class="header">
+                <h1>API Documentation</h1>
+                <p>Integration guide for developers</p>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--accent-primary); margin-bottom: 1rem;">Base URL</h3>
+                <div class="code-block">https://api.forensic-ai.app/v1</div>
+
+                <h3 style="color: var(--accent-primary); margin-top: 2rem; margin-bottom: 1rem;">Authentication</h3>
+                <div class="code-block">
+                    Authorization: Bearer YOUR_API_KEY
+                    Content-Type: application/json
+                </div>
+
+                <!-- Analyze Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge">POST</span>
+                        <span class="endpoint-path">/analyze</span>
+                    </div>
+                    <p class="endpoint-description">Analyze media file for forgery detection</p>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: var(--accent-primary);">Request:</strong>
+                        <div class="code-block">
+                            {
+                            "file": "<base64_encoded_file>",
+                                "type": "image|video|audio",
+                                "blockchain": true
+                                }
+                        </div>
+                    </div>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Response:</strong>
+                        <div class="code-block">
+                            {
+                            "id": "analysis_12345",
+                            "forgery_score": 0.87,
+                            "confidence": 0.82,
+                            "methods": ["exif", "ela", "cnn"],
+                            "blockchain_hash": "0x7f3a9b..."
+                            }
+                        </div>
+                    </div>
+                </div>
