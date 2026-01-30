@@ -1,5 +1,15 @@
-# Digital Forgery Detection System with Forensics (Image, Video, Audio + Blockchain Evidence Hashing)
+# Team Members Details 
 
+| S.No | Name                        | Register No  | Dept & Sec  | Phone No   | Mode        | GitHub Username         | Email ID                                                                            |
+| ---: | --------------------------- | ------------ | ----------- | ---------- | ----------- | ----------------------- | ----------------------------------------------------------------------------------- |
+|    1 | **Mrudul P Manesh** (Admin) | 711725UAD202 | AI & DS – B | 8289852458 | Hostel      | `Mrudul-P-Manesh`       | [mrudul.m_25ad@kgkite.ac.in](mailto:mrudul.m_25ad@kgkite.ac.in)                     |
+|    2 | **Jayanth Adhithyaa G R**   | 711725UCS142 | CSE – A     | 9345302876 | Day Scholar | `Knight-Node64`         | [jayanthadhithyaa.g_25cs@kgkite.ac.in](mailto:jayanthadhithyaa.g_25cs@kgkite.ac.in) |
+|    3 | **Yogeshwaran M**           | 711725UAD262 | AI & DS – B | 7305287826 | Hostel      | `yogeshwaranmariyappan` | [yogeshwaran.m_25ad@kgkite.ac.in](mailto:yogeshwaran.m_25ad@kgkite.ac.in)           |
+|    4 | **Ajay R**                  | 711725UCS103 | CSE – A     | 9943953521 | Day Scholar | `Ajay23-svg482`         | [ajay.r_25cs@kgkite.ac.in](mailto:ajay.r_25cs@kgkite.ac.in)                         |
+|    5 | **Prabakar A**              | 711725UAD216 | AI & DS – B | 9123507007 | Hostel      | `prabakar09`            | [prabakar.a_25ad@kgkite.ac.in](mailto:prabakar.a_25ad@kgkite.ac.in)                 |
+
+
+# Digital Forgery Detection System with Forensics (Image, Video, Audio + Blockchain Evidence Hashing)
 
 **EvidenX** is an intelligent digital forensics platform designed to uncover the hidden truth behind manipulated and AI-generated media. By combining advanced machine-learning forensic analysis with blockchain-secured evidence storage,EvidenX ensures every verification result is accurate, transparent, and tamper-proof. The system not only detects forgery but visually explains how, where, and when manipulation occurred. With its interactive cyber-forensic dashboard, users can analyze media effortlessly without technical expertise. EvidenX transforms digital verification into a legally reliable, future-ready solution for trust in the digital world.
 
