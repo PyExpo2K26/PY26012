@@ -11,6 +11,18 @@
      - Deliver accurate, transparent, and legally admissible results
      - Build an ML-powered forensic system with non-repudiable report storage
 
+## Technology Stack 
+
+| Layer              | Main Technologies                     | Purpose                                      |
+|--------------------|----------------------------------------|----------------------------------------------|
+| Frontend           | HTML5 + CSS3 + Vanilla JS             | Responsive UI, drag-drop, real-time updates  |
+| Backend            | FastAPI                               | Fast async API server                        |
+| Machine Learning   | PyTorch + CNN models                  | Deepfake & manipulation detection            |
+| Forensics          | EXIF tools, ELA, Copy-Move algos      | Classic forgery detection methods            |
+| Blockchain         | Web3 + Sepolia + Infura + SHA-256     | Immutable evidence & report storage          |
+| Communication      | JSON + Base64                         | File & data transfer                         |
+| Security           | Bearer Token / API Key                | Endpoint protection                          |
+
 ## Core Features
 
 ### Multi-Media Forgery Detection
@@ -90,16 +102,3 @@
      - Bearer token auth
      - Python & JS SDK support
 
-## Technology Stack – Summary
-
-| Layer              | Main Technologies                     | Purpose                                      |
-|--------------------|----------------------------------------|----------------------------------------------|
-| Frontend           | HTML5 + CSS3 + Vanilla JS             | Responsive UI, drag-drop, real-time updates  |
-| Backend            | FastAPI                               | Fast async API server                        |
-| Machine Learning   | PyTorch + CNN models                  | Deepfake & manipulation detection            |
-| Forensics          | EXIF tools, ELA, Copy-Move algos      | Classic forgery detection methods            |
-| Blockchain         | Web3 + Sepolia + Infura + SHA-256     | Immutable evidence & report storage          |
-| Communication      | JSON + Base64                         | File & data transfer                         |
-| Security           | Bearer Token / API Key                | Endpoint protection                          |
-
-Built for **accuracy**, **transparency** and **legal reliability** in the age of AI-generated content.
