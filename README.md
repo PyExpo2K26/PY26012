@@ -5,7 +5,6 @@
 
 ## The main goal of this project is to:
      
-     ## Project Goals
      - Reliably detect forgery in digital media (images, videos, audio)
      - Clearly explain **how, where, and when** manipulation occurred
      - Guarantee evidence trustworthiness using blockchain
