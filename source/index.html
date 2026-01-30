@@ -47,4 +47,105 @@
                             <p>or click to browse</p>
                         </div>
                         <div class="file-types">
-                            <div class="file-type">Images</div>
+                            <div class="file-type">Images</div>                            
+                            <div class="file-type">Videos</div>
+                            <div class="file-type">Audio</div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*,video/*,audio/*">
+                    </div>
+                </div>
+
+                <!-- Analysis Progress -->
+                <div>
+                    <div class="analysis-container">
+                        <div class="analysis-title">
+                            <span class="spinner"></span>
+                            Analyzing Media...
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>EXIF Metadata</span>
+                                <span id="prog1">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill1"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Error Level Analysis</span>
+                                <span id="prog2">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill2"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Copy-Move Detection</span>
+                                <span id="prog3">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill3"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>CNN Classification</span>
+                                <span id="prog4">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill4"></div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            Estimated time: 45 seconds
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section">
+                <h2 style="margin-bottom: 1.5rem; color: var(--accent-primary);">Analysis Results</h2>
+
+                <div class="results-grid">
+                    <div class="result-card high-risk">
+                        <div class="label">Overall Forgery Score</div>
+                        <div class="score">87%</div>
+                        <div class="label">Risk Level</div>
+                        <span class="status-badge suspicious">SUSPICIOUS</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">High
+                            probability of
+                            digital forgery detected</p>
+                    </div>
+
+                    <div class="result-card medium-risk">
+                        <div class="label">Confidence Score</div>
+                        <div class="score">82%</div>
+                        <div class="label">Detection Method</div>
+                        <span class="status-badge"
+                            style="background: rgba(245, 158, 11, 0.2); color: var(--warning);">CNN +
+                            ELA</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Multiple
+                            forensic
+                            methods agree</p>
+                    </div>
+
+                    <div class="result-card low-risk">
+                        <div class="label">Authentication Score</div>
+                        <div class="score">13%</div>
+                        <div class="label">Verdict</div>
+                        <span class="status-badge authentic">LIKELY FORGED</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Evidence
+                            strongly
+                            suggests digital manipulation</p>
+                    </div>
+                </div>
+
+                
