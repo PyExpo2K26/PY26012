@@ -1,4 +1,4 @@
- // Page Navigation
+        // Page Navigation
         function switchPage(pageName) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageName).classList.add('active');
