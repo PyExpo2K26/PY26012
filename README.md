@@ -15,13 +15,13 @@
 ## Core Features
 
 ### Multi-Media Forgery Detection
-- Images, videos, audio
-- Drag-and-drop upload
-- Major formats supported
-- Instant file validation
-- Auto type detection
-- Size & quality check
-- Preview before analysis
+     - Images, videos, audio
+     - Drag-and-drop upload
+     - Major formats supported
+     - Instant file validation
+     - Auto type detection
+     - Size & quality check
+     - Preview before analysis
 
 ### Forensic Analysis Modules
 
