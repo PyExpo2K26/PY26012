@@ -1058,3 +1058,23 @@
             text-align: center;
             margin-bottom: 3rem;
         }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 243, 255, 0.02);
+            transform: translateX(5px);
+        }
