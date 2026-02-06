@@ -278,5 +278,24 @@
             backdrop-filter: blur(5px);
             clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 5% 100%, 0 85%);
         }
-                        
+ 
+        .header h1 {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .header h1 span {
+            color: var(--text-primary);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);                       
                         
