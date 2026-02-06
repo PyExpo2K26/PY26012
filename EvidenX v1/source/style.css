@@ -638,3 +638,23 @@
         }
 
         .method-result {                    
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Blockchain Section */
+        .blockchain-section {
+            background: rgba(2, 2, 4, 0.8);
+            border: 1px solid var(--accent-primary);
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            background-image: repeating-linear-gradient(45deg, rgba(0, 243, 255, 0.03) 0, rgba(0, 243, 255, 0.03) 10px, transparent 10px, transparent 20px);
+        }
+
+        .blockchain-title {
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
