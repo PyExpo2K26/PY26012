@@ -418,3 +418,23 @@
             color: var(--accent-primary);
             margin-bottom: 2rem;
             display: flex;
+           align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: 2px solid transparent;
+            border-top-color: var(--accent-primary);
+            border-right-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            filter: drop-shadow(0 0 5px var(--accent-primary));
+        }
+
+        @keyframes spin {
+            to {
