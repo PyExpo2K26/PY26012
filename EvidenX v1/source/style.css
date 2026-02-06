@@ -698,3 +698,23 @@
             text-transform: uppercase;
             transition: all 0.3s;
         }
+
+        .copy-btn:hover {
+            background: var(--accent-primary);
+            color: #000;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
