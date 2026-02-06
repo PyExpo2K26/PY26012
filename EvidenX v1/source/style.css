@@ -718,3 +718,23 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1rem;
             font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: #050505;
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
