@@ -513,3 +513,31 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            border: 1px solid currentColor;
+            background: transparent;
+        }
+        .status-badge.authentic {
+            color: var(--success);
+            text-shadow: 0 0 5px var(--success);
+        }
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .method-box {
+            background: rgba(10, 15, 20, 0.5);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
