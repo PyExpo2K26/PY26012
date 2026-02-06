@@ -8,6 +8,7 @@
 |    3 | **Yogeshwaran M**           | 711725UAD262 | AI & DS – B | 7305287826 | `yogeshwaranmariyappan` | [yogeshwaran.m_25ad@kgkite.ac.in](mailto:yogeshwaran.m_25ad@kgkite.ac.in)           |
 |    4 | **Ajay R**                  | 711725UCS103 | CSE – A     | 9943953521 | `Ajay23-svg482`         | [ajay.r_25cs@kgkite.ac.in](mailto:ajay.r_25cs@kgkite.ac.in)                         |
 |    5 | **Prabakar A**              | 711725UAD216 | AI & DS – B | 9123507007 | `prabakar09`            | [prabakar.a_25ad@kgkite.ac.in](mailto:prabakar.a_25ad@kgkite.ac.in)                 |
+|    6 | **Harshini K R**            | 711725UCS140 |CSE – A      | 9976519845 | `HarshiniRavichandran18`| [harshinik.r_25cs@kgkite.ac.in)                                                     |
 
 
 # Digital Forgery Detection System with Forensics (Image, Video, Audio + Blockchain Evidence Hashing)
