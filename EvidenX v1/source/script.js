@@ -170,3 +170,16 @@
         function toggleAutoDelete(el) { el.classList.toggle('active'); }
         function exportData() { alert('Exporting your data...'); }
         function clearCache() { alert('Cache cleared'); }
+        // Event Listeners for new Results Section
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = btn.previousElementSibling.textContent;
+                navigator.clipboard.writeText(hash);
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        });
