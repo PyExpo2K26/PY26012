@@ -189,3 +189,4 @@
             btn.addEventListener('click', () => {
                 const text = btn.textContent.trim();
                 if (text.includes('Download')) {
+                    alert('Downloading PDF report: forensic_analysis_2026-01-28.pdf');
