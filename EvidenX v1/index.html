@@ -343,3 +343,34 @@
             color: var(--accent-primary);
             text-transform: uppercase;
         }
+        input[type="file"] {
+            display: none;
+        }
+        .analysis-container {
+            background: rgba(10, 15, 20, 0.8);
+            border-radius: 0;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .analysis-container::after {
+            content: "SYSTEM_MONITOR";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--bg-primary);
+            padding: 0 10px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-family: 'Orbitron';
+        }
+        .analysis-title {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
