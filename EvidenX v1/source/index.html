@@ -273,3 +273,28 @@
                     <div class="faq-question" onclick="toggleFaq(this)">Can it detect Photoshoped Images?</div>
                     <div class="faq-answer">
                         Yes. Our multi-modal engine supports Image verification(Using Heatmaps,etc) to identify Edited/Altered Images edited  by Softwares
+                        like Photoshop,Snapseed,etc.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="history" class="page">
+            <div class="header">
+                <h1>Analysis History</h1>
+                <p>Your previous forensic analyses</p>
+            </div>
+
+            <div class="history-list" id="historyList">
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>sample_image_01.jpg</h3>
+                        <p>Image | Risk: HIGH (87%) | 2026-01-28 14:35</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
