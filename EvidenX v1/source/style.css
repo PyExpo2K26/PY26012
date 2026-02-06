@@ -958,3 +958,23 @@
 
         /* API Docs */
         .code-block {
+            background: #020204;
+            border: 1px solid var(--border);
+            color: var(--warning);
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .api-endpoint {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #020204;
+            border-top: 1px solid var(--border);
+            padding: 3rem;
