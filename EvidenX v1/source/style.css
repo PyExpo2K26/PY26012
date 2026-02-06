@@ -298,4 +298,23 @@
         .badge {
             display: inline-block;
             background: rgba(0, 243, 255, 0.1);                       
-                        
+            color: var(--accent-primary);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            position: relative;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Upload Section */
+        .upload-box {                        
