@@ -978,3 +978,23 @@
             background: #020204;
             border-top: 1px solid var(--border);
             padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            background: rgba(10, 15, 20, 0.6);
