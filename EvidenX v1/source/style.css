@@ -578,3 +578,24 @@
 
         .result-card.low-risk .score {
             color: var(--success);
+        }
+
+        .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            border: 1px solid currentColor;
+            background: transparent;
+        }
+
+        .status-badge.suspicious {
