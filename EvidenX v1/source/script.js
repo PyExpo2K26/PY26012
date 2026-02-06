@@ -161,3 +161,12 @@
         function toggleTheme() {
             document.documentElement.style.filter = document.documentElement.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
         }
+
+        // Settings Toggles
+        function toggleDarkMode(el) { el.classList.toggle('active'); }
+        function toggleAnimations(el) { el.classList.toggle('active'); }
+        function toggleNotifications(el) { el.classList.toggle('active'); }
+        function toggleAlerts(el) { el.classList.toggle('active'); }
+        function toggleAutoDelete(el) { el.classList.toggle('active'); }
+        function exportData() { alert('Exporting your data...'); }
+        function clearCache() { alert('Cache cleared'); }
