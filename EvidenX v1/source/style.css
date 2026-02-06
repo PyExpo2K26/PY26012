@@ -878,3 +878,22 @@
             padding: 0.5rem 1rem;
             background: transparent;
             border: 1px solid var(--text-secondary);
+            color: var(--text-secondary);
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-small:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 5px var(--accent-primary);
+        }
+
+        /* Settings Page */
+        .settings-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
