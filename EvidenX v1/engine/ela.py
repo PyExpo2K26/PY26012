@@ -55,3 +55,8 @@ def perform_ela(image_path, quality=90):
         img_str = base64.b64encode(buffer).decode()
         
         return img_str, float(score)
+    
+    except Exception as e:
+        print(f"ELA Error: {e}")
+        return None, 0.0
+
