@@ -1,0 +1,10 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-primary);
+        }
+
+        :root {
+            --bg-primary: #020204;
