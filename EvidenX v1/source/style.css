@@ -78,3 +78,23 @@
         .score {
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(2, 2, 4, 0.85);
