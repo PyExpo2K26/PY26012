@@ -170,6 +170,7 @@
         function toggleAutoDelete(el) { el.classList.toggle('active'); }
         function exportData() { alert('Exporting your data...'); }
         function clearCache() { alert('Cache cleared'); }
+
         // Event Listeners for new Results Section
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
