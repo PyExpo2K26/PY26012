@@ -937,8 +937,7 @@
         }
 
         .toggle-switch.active {
-            background: var(--accent-primary);
-                    
+            background: var(--accent-primary);            
         }
 
         .toggle-switch::before {
