@@ -98,3 +98,23 @@
         /* Navigation */
         nav {
             background: rgba(2, 2, 4, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* Nav glowing line */
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
