@@ -758,3 +758,22 @@
             margin-top: 2rem;
             border: 1px solid var(--border);
             background: #000;
+        }
+
+        .heatmap-title {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            color: var(--accent-primary);
+            font-family: 'Orbitron';
+            border-bottom: 1px solid var(--border);
+        }
+
+        .heatmap-container {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            background:
+                linear-gradient(90deg, #111 1px, transparent 1px),
+                linear-gradient(#111 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
