@@ -194,3 +194,4 @@
                     alert('Share link copied: https://forgery-detection.app/results/abc123xyz');                        
                 } else if (text.includes('View Full')) {
                     alert('Full analysis details would be shown in detailed view');
+                } else if (text.includes('Analyze')) {
