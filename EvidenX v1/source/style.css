@@ -538,3 +538,23 @@
         }
 
         .result-card.high-risk {
+            border-color: var(--danger);
+            background: linear-gradient(135deg, rgba(255, 0, 60, 0.1) 0%, transparent 100%);
+        }
+
+        .result-card.high-risk:hover {
+            box-shadow: var(--danger-glow);
+        }
+
+        .result-card.medium-risk {
+            border-color: var(--warning);
+            background: linear-gradient(135deg, rgba(255, 230, 0, 0.1) 0%, transparent 100%);
+        }
+
+        .result-card.low-risk {
+            border-color: var(--success);
+            background: linear-gradient(135deg, rgba(10, 255, 96, 0.1) 0%, transparent 100%);
+        }
+
+        .result-card.low-risk:hover {
+            box-shadow: var(--success-glow);
