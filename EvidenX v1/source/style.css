@@ -558,3 +558,23 @@
 
         .result-card.low-risk:hover {
             box-shadow: var(--success-glow);
+        }
+
+        .score {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .result-card.high-risk .score {
+            color: var(--danger);
+        }
+
+        .result-card.medium-risk .score {
+            color: var(--warning);
+        }
+
+        .result-card.low-risk .score {
+            color: var(--success);
