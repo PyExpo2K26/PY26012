@@ -599,3 +599,23 @@
         }
 
         .status-badge.suspicious {
+            color: var(--danger);
+            text-shadow: 0 0 5px var(--danger);
+        }
+
+        .status-badge.authentic {
+            color: var(--success);
+            text-shadow: 0 0 5px var(--success);
+        }
+
+        /* Methods Grid */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .method-box {
+            background: rgba(10, 15, 20, 0.5);
+                    
