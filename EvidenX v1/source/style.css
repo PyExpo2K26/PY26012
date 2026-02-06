@@ -118,3 +118,23 @@
             bottom: -1px;
             left: 0;
             width: 100%;
+           height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.7);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand::before {
+            content: '⌬';
+            font-size: 1.8rem;
+        }
