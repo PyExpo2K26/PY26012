@@ -238,3 +238,23 @@
 
         .page {
             display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: glitchFadeIn 0.5s ease;
+        }
+
+        @keyframes glitchFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+                clip-path: inset(0 0 100% 0);
+            }
+
+            50% {
+                clip-path: inset(0 0 0 0);
+            }
+
+            60% {
+                transform: translateX(5px);
