@@ -8,3 +8,13 @@
 
         :root {
             --bg-primary: #020204;
+            --bg-secondary: #0a0f14;
+            --bg-tertiary: #111a22;
+            --text-primary: #e0faff;
+            --text-secondary: #8899a6;
+            --accent-primary: #00f3ff;
+            /* Cyber Cyan */
+            --accent-secondary: #0066ff;
+            /* Deep Blue */
+            --success: #0aff60;
+            --warning: #ffe600;
