@@ -218,3 +218,23 @@
             content: "";
             position: absolute;
             top: 2rem;
+           left: 1rem;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--accent-primary);
+            border-left: 2px solid var(--accent-primary);
+        }
+
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 2rem;
+            right: 1rem;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--accent-primary);
+            border-right: 2px solid var(--accent-primary);
+        }
+
+        .page {
+            display: none;
