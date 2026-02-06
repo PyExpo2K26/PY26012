@@ -74,3 +74,37 @@
             pointer-events: none;
             z-index: -1;
         }
+        h1,
+        h2,
+        h3,
+        h4,
+        .nav-brand,
+        .score {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+        nav {
+            background: rgba(2, 2, 4, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
