@@ -897,3 +897,24 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+
+        .settings-section {
+            background: rgba(10, 15, 20, 0.6);
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .setting-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .input-field {
+            background: #000;
+            border: 1px solid var(--border);
+            color: var(--accent-primary);
+            padding: 0.8rem;
