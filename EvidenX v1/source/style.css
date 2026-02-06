@@ -939,3 +939,23 @@
         .toggle-switch.active {
             background: var(--accent-primary);
                     
+        }
+
+        .toggle-switch::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: 22px;
+            height: 22px;
+            background: #000;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active::before {
+            left: 26px;
+        }
+
+        /* API Docs */
+        .code-block {
