@@ -184,3 +184,5 @@
                 }, 2000);
             });
         });
+
+        document.querySelectorAll('.btn').forEach(btn => {
