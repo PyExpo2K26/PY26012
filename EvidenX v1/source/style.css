@@ -1078,3 +1078,23 @@
             background: rgba(0, 243, 255, 0.02);
             transform: translateX(5px);
         }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
