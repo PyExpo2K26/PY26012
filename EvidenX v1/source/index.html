@@ -373,3 +373,28 @@
                             <p>Your blockchain connection</p>
                         </div>
                     </div>
+                    <input type="text" class="input-field" placeholder="Enter Infura API Key" id="infuraKey">
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Max File Size (MB)</strong>
+                            <p>Maximum upload size</p>
+                        </div>
+                    </div>
+                    <input type="number" class="input-field" value="100" min="10" max="1000">
+                </div>
+
+                <div class="settings-section">
+                    <h3>Data & Privacy</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Auto-Delete Analysis</strong>
+                            <p>Delete analyses after 30 days</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAutoDelete(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn btn-secondary" onclick="exportData()">Export My Data</button>
+                        <button class="btn btn-secondary" onclick="clearCache()" style="margin-top: 1rem;">Clear
+                            Cache</button>
+                    </div>
