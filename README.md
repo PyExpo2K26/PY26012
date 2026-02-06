@@ -1,5 +1,5 @@
 # Team Name - EvidenX
-# Team Members Detail
+# Team Members Details
 
 | S.No | Name                        | Register No  | Dept & Sec  | Phone No    | GitHub Username         | Email ID                                                                            |
 | ---: | --------------------------- | ------------ | ----------- | ---------- | ----------------------- | ----------------------------------------------------------------------------------- |
