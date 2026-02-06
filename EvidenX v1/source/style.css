@@ -518,3 +518,23 @@
             bottom: -1px;
             right: -1px;
             width: 10px;
+            height: 10px;
+            border-bottom: 2px solid var(--text-secondary);
+            border-right: 2px solid var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .result-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .result-card:hover::before,
+        .result-card:hover::after {
+            border-color: var(--accent-primary);
+            width: 20px;
+            height: 20px;
+        }
+
+        .result-card.high-risk {
