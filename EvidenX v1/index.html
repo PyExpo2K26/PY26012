@@ -223,3 +223,56 @@
             display: block;
             animation: glitchFadeIn 0.5s ease;
         }
+        @keyframes glitchFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+                clip-path: inset(0 0 100% 0);
+            }
+            50% {
+                clip-path: inset(0 0 0 0);
+            }
+            60% {
+                transform: translateX(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .header {
+            background: linear-gradient(180deg, rgba(10, 15, 20, 0.9) 0%, rgba(2, 2, 4, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--accent-primary);
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(5px);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 5% 100%, 0 85%);
+        }
+        .header h1 {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+        .header h1 span {
+            color: var(--text-primary);
+        }
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--accent-primary);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            position: relative;
+        }
