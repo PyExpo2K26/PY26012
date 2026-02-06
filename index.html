@@ -319,3 +319,48 @@
             color: var(--text-secondary);
             text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
+        .upload-icon::after {
+            content: '⟲';
+            display: block;
+        }
+        .upload-text h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .file-type {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .analysis-container {
+            background: rgba(10, 15, 20, 0.8);
+            border-radius: 0;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .analysis-container::after {
+            content: "SYSTEM_MONITOR";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--bg-primary);
+            padding: 0 10px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-family: 'Orbitron';
+        }
