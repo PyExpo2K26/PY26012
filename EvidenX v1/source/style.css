@@ -857,3 +857,24 @@
             background: rgba(10, 15, 20, 0.4);
             transition: all 0.3s;
         }
+
+        .history-item:hover {
+            background: rgba(0, 243, 255, 0.05);
+            padding-left: 2rem;
+        }
+
+        .history-info h3 {
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+
+        .history-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--text-secondary);
