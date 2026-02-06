@@ -423,3 +423,13 @@
                         <span class="method-badge">POST</span>
                         <span class="endpoint-path">/analyze</span>
                     </div>
+                    <p class="endpoint-description">Analyze media file for forgery detection</p>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: var(--accent-primary);">Request:</strong>
+                        <div class="code-block">
+                            {
+                            "file": "<base64_encoded_file>",
+                                "type": "image|video|audio",
+                                "blockchain": true
+                                }
+                        </div>
