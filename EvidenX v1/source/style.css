@@ -378,3 +378,23 @@
             margin-top: 1.5rem;
             flex-wrap: wrap;
         }
+
+        .file-type {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Analysis Section */
+        .analysis-container {
+            background: rgba(10, 15, 20, 0.8);
+            border-radius: 0;
+            padding: 2rem;
+            border: 1px solid var(--border);
