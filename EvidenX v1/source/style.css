@@ -18,3 +18,23 @@
             /* Deep Blue */
             --success: #0aff60;
             --warning: #ffe600;
+            --danger: #ff003c;
+            --border: #1a2f3a;
+            --glass: rgba(10, 15, 20, 0.7);
+            --neon-glow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+            --danger-glow: 0 0 10px rgba(255, 0, 60, 0.5);
+            --success-glow: 0 0 10px rgba(10, 255, 96, 0.5);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            position: relative;
+        }
