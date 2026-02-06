@@ -777,3 +777,24 @@
                 linear-gradient(#111 1px, transparent 1px);
             background-size: 20px 20px;
         }
+
+        .sample-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: #050505;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .sample-image::after {
+            content: "SCANNING...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.1);
+            font-family: 'Orbitron';
+            font-size: 2rem;
