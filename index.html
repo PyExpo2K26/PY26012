@@ -293,4 +293,29 @@
             overflow: hidden;
             clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
         }
-        
+        .upload-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(0, 243, 255, 0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        .upload-box:hover::before {
+            transform: translateX(100%);
+        }
+        .upload-box:hover {
+            border-color: var(--accent-primary);
+            box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+        .upload-box.active {
+            border-style: solid;
+            border-color: var(--accent-primary);
+            background: rgba(0, 243, 255, 0.05);
+        }
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
