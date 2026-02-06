@@ -398,3 +398,28 @@
                         <button class="btn btn-secondary" onclick="clearCache()" style="margin-top: 1rem;">Clear
                             Cache</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="api" class="page">
+            <div class="header">
+                <h1>API Documentation</h1>
+                <p>Integration guide for developers</p>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--accent-primary); margin-bottom: 1rem;">Base URL</h3>
+                <div class="code-block">https://api.forensic-ai.app/v1</div>
+
+                <h3 style="color: var(--accent-primary); margin-top: 2rem; margin-bottom: 1rem;">Authentication</h3>
+                <div class="code-block">
+                    Authorization: Bearer YOUR_API_KEY
+                    Content-Type: application/json
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge">POST</span>
+                        <span class="endpoint-path">/analyze</span>
+                    </div>
