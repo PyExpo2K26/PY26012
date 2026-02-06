@@ -198,3 +198,23 @@
             transition: all 0.3s ease;
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
+
+        .theme-toggle:hover {
+            background: var(--accent-primary);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-primary);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Corner Decorations for Container */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 2rem;
