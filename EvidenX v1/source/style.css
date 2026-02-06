@@ -478,3 +478,23 @@
             right: 0;
             width: 2px;
             height: 100%;
+            background: #fff;
+            box-shadow: 0 0 5px #fff;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(5px);
