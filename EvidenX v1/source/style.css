@@ -678,3 +678,23 @@
             padding: 1rem;
             border: 1px solid var(--border);
             font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            padding: 0.25rem 0.75rem;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
