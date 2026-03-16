@@ -49,3 +49,52 @@ def analyze_pcap(file_path):
             "byte_counts": []
         }
     }
+
+    try:
+        # Initial pass for summary stats
+        # Enabling IP defragmentation via tshark preferences
+        # Note: 'ip.defragment' is a common tshark preference
+        custom_parameters = ['-o', 'ip.defragment:TRUE']
+        cap = pyshark.FileCapture(
+            file_path, 
+            tshark_path=TSHARK_PATH, 
+            keep_packets=False,
+            custom_parameters=custom_parameters
+        )
+        
+        ips = Counter()
+        protocols = Counter()
+        domains = set()
+        
+        first_packet_time = None
+        last_packet_time = None
+        
+        packet_count = 0
+        
+        # Detection flags
+        cleartext_protocols = []
+        suspicious_connections = 0
+        scan_activity = 0
+        c2_activity = 0
+        fragmentation_detected = 0
+        
+        # New: Tracking for timeline and logs
+        packet_log = []
+        timeline_bins = Counter() # (int(timestamp)) -> count
+        bytes_bins = Counter() # (int(timestamp)) -> total_bytes
+        
+        # Security tracking
+        syn_packets = Counter() # src -> count
+        icmp_packets = Counter() # src -> count
+
+        for pkt in cap:
+            packet_count += 1
+            
+            # Time tracking
+            try:
+                pkt_time = float(pkt.sniff_timestamp)
+                if first_packet_time is None: first_packet_time = pkt_time
+                last_packet_time = pkt_time
+            except: pass
+
+            # Protocol Tracking
