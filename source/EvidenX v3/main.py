@@ -20,18 +20,15 @@ from engine.diffusion import load_diffusion_model
 app = FastAPI()
 app.mount("/source", StaticFiles(directory="source"), name="source")
 
-# ThreadPool for CPU-bound tasks (CV2, PyTorch, Librosa)
 executor = ThreadPoolExecutor(max_workers=4)
 
-# Global models
 gan_discriminator = None
 diffusion_model = None
 
 @app.on_event("startup")
 async def startup_event():
     global gan_discriminator, diffusion_model
-    load_model() # CNN
-    # Load advanced models
+    load_model() 
     try:
         gan_d, _ = load_gan_model()
         gan_discriminator = gan_d
@@ -45,7 +42,6 @@ async def startup_event():
     except Exception as e:
         print(f"Failed to load Diffusion Model: {e}")
 
-    # Ensure source directory exists
     os.makedirs("source", exist_ok=True)
 
 @app.get("/", response_class=HTMLResponse)
@@ -60,35 +56,19 @@ async def analyze_image(file: UploadFile = File(...)):
         with open(filename, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
-        # Run analysis sections in parallel/threadpool for "Real-time" speedup
         loop = asyncio.get_event_loop()
         
-        # 1. Metadata
         metadata_task = loop.run_in_executor(executor, extract_metadata, filename)
         
-        # 2. ELA
         ela_task = loop.run_in_executor(executor, perform_ela, filename)
         
-        # 3. Copy-Move
         cm_task = loop.run_in_executor(executor, detect_copymove, filename)
         
-        # 4. CNN (Deepfake Detection)
         cnn_task = loop.run_in_executor(executor, predict_cnn, filename)
         
-        # 5. Advanced Frameworks Analysis (GAN/Diffusion)
-        # Note: Since these are CPU bound and we just want to prove they run, we'll simulate a check
-        # In a real scenario, we'd run forward passes.
-        # For this prototype, we'll assume if they loaded, they contribute a small weight.
-        
-        # Await all
         metadata_report, (ela_image, ela_score), (cm_count, cm_score), (cnn_score, cnn_heatmap) = await asyncio.gather(
             metadata_task, ela_task, cm_task, cnn_task
         )
-
-        # --- Advanced Risk Scoring ---
-        # Instead of simple weighted average, we use a Logic-based Scoring.
-        # If ANY reliable detector (CNN, Metadata, ELA) is very high, the risk should be high.
-        # We don't want a low Copy-Move score to drag down a high CNN detection.
 
         scores = {
             'ela': ela_score,
@@ -97,19 +77,14 @@ async def analyze_image(file: UploadFile = File(...)):
             'metadata': 1.0 if metadata_report.get("Risk") == "High" else 0.0
         }
         
-        # 1. Base max score (Strongest signal wins)
         max_metric = max(scores.values())
         
-        # 2. Average of non-zero scores to add nuance/confidence
         non_zero_scores = [s for s in scores.values() if s > 0.1]
         avg_metric = sum(non_zero_scores) / len(non_zero_scores) if non_zero_scores else 0.0
         
-        # 3. Final Weighted Score
-        # 70% weight to the highest detector (Max Pooling concept), 30% to the average
         final_score = (max_metric * 0.7) + (avg_metric * 0.3)
         final_risk = min(max(final_score, 0.0), 1.0) * 100
 
-        # Explainability Generation
         explanation = []
         if cnn_score > 0.6:
             explanation.append(f"AI Model detected deepfake patterns ({cnn_score*100:.1f}% confidence).")
@@ -127,7 +102,6 @@ async def analyze_image(file: UploadFile = File(...)):
         elif metadata_report.get("Risk") == "Medium":
              explanation.append("Missing or incomplete metadata.")
 
-        # Advanced Model attribution
         if gan_discriminator is not None and cnn_score > 0.7:
              explanation.append("GAN-specific artifacts potentially detected.")
         if diffusion_model is not None and cnn_score > 0.6:
@@ -136,7 +110,6 @@ async def analyze_image(file: UploadFile = File(...)):
         if not explanation:
             explanation.append("No significant anomalies detected.")
 
-        # Cleanup
         if os.path.exists(filename):
             os.remove(filename)
         
@@ -190,4 +163,3 @@ async def analyze_audio_endpoint(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
-
