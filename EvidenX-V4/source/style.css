@@ -298,3 +298,104 @@
         .badge {
             display: inline-block;
  
+           background: rgba(0, 243, 255, 0.1);
+            color: var(--accent-primary);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            position: relative;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Upload Section */
+        .upload-box {
+            background: rgba(10, 15, 20, 0.6);
+            border: 2px dashed var(--border);
+            padding: 4rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+        }
+
+        .upload-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(0, 243, 255, 0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .upload-box:hover::before {
+            transform: translateX(100%);
+        }
+
+        .upload-box:hover {
+            border-color: var(--accent-primary);
+            box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .upload-box.active {
+            border-style: solid;
+            border-color: var(--accent-primary);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .upload-icon::after {
+            content: '⟲';
+            display: block;
+        }
+
+        .upload-text h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .file-type {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Analysis Section */
+        .analysis-container {
+            background: rgba(10, 15, 20, 0.8);
+            border-radius: 0;
+            padding: 2rem;
+ 
