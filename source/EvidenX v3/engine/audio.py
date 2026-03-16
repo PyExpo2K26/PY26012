@@ -6,18 +6,10 @@ import io
 import base64   
 
 def analyze_audio(file_path):
-    """
-    Analyzes audio for deepfake markers and generates a mel-spectrogram.
-    Returns:
-        fake_probability: float (0.0 to 1.0)
-        spectrum_base64: str (base64 encoded image)
-    """
+  
     try:
-        # Load audio
-        # duration=10 to keep it efficient for demo
         y, sr = librosa.load(file_path, duration=10, sr=None)
         
-        # 1. Generate Mel-Spectrogram
         plt.figure(figsize=(10, 4))
         S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
         S_dB = librosa.power_to_db(S, ref=np.max)
@@ -26,38 +18,17 @@ def analyze_audio(file_path):
         plt.title('Mel-Spectrogram')
         plt.tight_layout()
         
-        # Save to buffer
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
         buf.seek(0)
         spectrum_base64 = base64.b64encode(buf.read()).decode()
         plt.close()
         
-        # 2. Fake Detection Logic (Real Feature Analysis)
-        # Deepfakes often have artifacts in high frequencies or silence intervals.
-        # We'll use MFCC variance and spectral contrast as features.
-        
         mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
         spectral_contrast = librosa.feature.spectral_contrast(y=y, sr=sr)
         
-        # Heuristic based on typical synthetic artifacts:
-        # Synthetic speech often has overly smooth MFCC trajectories (low variance) 
-        # or unnatural spectral contrast distributions.
-        
         mfcc_var = np.var(mfccs, axis=1).mean()
         contrast_mean = np.mean(spectral_contrast)
-        
-        # This is a calibrated heuristic. 
-        # Real speech usually has higher variance in MFCCs due to natural modulation.
-        # Very low variance can imply synthesis.
-        
-        # Normalize score (inverted: lower variance -> higher fake probability)
-        # Thresholds would ideally be learned, but here we estimate.
-        
-        # Example threshold: 
-        # If mfcc_var < 20 -> likely synthetic/smooth
-        # If mfcc_var > 50 -> likely real/natural
-        
         score = 0.0
         if mfcc_var < 30:
             score = 0.8 # High probability of being fake
