@@ -397,3 +397,123 @@
                     </div>
                     <input type="number" class="input-field" value="100" min="10" max="1000">
                 </div>
+
+                <div class="settings-section">
+                    <h3>Data & Privacy</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Auto-Delete Analysis</strong>
+                            <p>Delete analyses after 30 days</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAutoDelete(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn btn-secondary" onclick="exportData()">Export My Data</button>
+                        <button class="btn btn-secondary" onclick="clearCache()" style="margin-top: 1rem;">Clear
+                            Cache</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API DOCS PAGE -->
+        <div id="api" class="page">
+            <div class="header">
+                <h1>API Documentation</h1>
+                <p>Integration guide for developers</p>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--accent-primary); margin-bottom: 1rem;">Base URL</h3>
+                <div class="code-block">https://api.forensic-ai.app/v1</div>
+
+                <h3 style="color: var(--accent-primary); margin-top: 2rem; margin-bottom: 1rem;">Authentication</h3>
+                <div class="code-block">
+                    Authorization: Bearer YOUR_API_KEY
+                    Content-Type: application/json
+                </div>
+
+                <!-- Analyze Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge">POST</span>
+                        <span class="endpoint-path">/analyze</span>
+                    </div>
+                    <p class="endpoint-description">Analyze media file for forgery detection</p>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: var(--accent-primary);">Request:</strong>
+                        <div class="code-block">
+                            {
+                            "file": "<base64_encoded_file>",
+                                "type": "image|video|audio",
+                                "blockchain": true
+                                }
+                        </div>
+                    </div>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Response:</strong>
+                        <div class="code-block">
+                            {
+                            "id": "analysis_12345",
+                            "forgery_score": 0.87,
+                            "confidence": 0.82,
+                            "methods": ["exif", "ela", "cnn"],
+                            "blockchain_hash": "0x7f3a9b..."
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge" style="background: #10b981;">GET</span>
+                        <span class="endpoint-path">/history</span>
+                    </div>
+                    <p class="endpoint-description">Retrieve analysis history</p>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Response:</strong>
+                        <div class="code-block">
+                            {
+                            "analyses": [
+                            {
+                            "id": "analysis_12345",
+                            "filename": "sample.jpg",
+                            "created_at": "2026-01-28T14:35:00Z",
+                            "forgery_score": 0.87
+                            }
+                            ]
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge" style="background: #f59e0b;">GET</span>
+                        <span class="endpoint-path">/report/:id</span>
+                    </div>
+                    <p class="endpoint-description">Download forensic report as PDF</p>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Query Parameters:</strong>
+                        <div class="code-block">
+                            ?format=pdf&include_blockchain=true
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>EvidenX v1.0</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Powered by FastAPI + PyTorch + Web3 | © 2026
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
