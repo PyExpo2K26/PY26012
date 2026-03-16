@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Forgery Detection - Cyber Forensic Unit</title>
+    <!-- Cybernetic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">EvidenX</div>
+        <ul class="nav-links">
+            <li><a onclick="switchPage('dashboard')" class="nav-link active">Dashboard</a></li>
+            <li><a onclick="switchPage('history')" class="nav-link">History</a></li>
+            <li><a onclick="switchPage('settings')" class="nav-link">Settings</a></li>
+            <li><a onclick="switchPage('api')" class="nav-link">API Docs</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard" class="page active">
+            <div class="header">
+                <h1>Digital Forgery Detection System</h1>
+                <p>Detect AI-Generated Deepfakes & Digital Forgeries with Blockchain Verification</p>
+                <span class="badge">Powered by ML + CyberForensic + Blockchain</span>
+            </div>
+
+            <div class="main-grid">
+                <!-- Upload Section -->
+                <div>
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon"></div>
+                        <div class="upload-text">
+                            <h3>Drop Your File Here</h3>
+                            <p>or click to browse</p>
+                        </div>
+                        <div class="file-types">
+                            <div class="file-type">Images</div>
+                            <div class="file-type">Videos</div>
+                            <div class="file-type">Audio</div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*,video/*,audio/*">
+                    </div>
+                </div>
+
+                <!-- Analysis Progress -->
+                <div>
+                    <div class="analysis-container">
+                        <div class="analysis-title">
+                            <span class="spinner"></span>
+                            Analyzing Media...
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>EXIF Metadata</span>
+                                <span id="prog1">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill1"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Error Level Analysis</span>
+                                <span id="prog2">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill2"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Copy-Move Detection</span>
+                                <span id="prog3">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill3"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>CNN Classification</span>
+                                <span id="prog4">0%</span>
+                            </div>
