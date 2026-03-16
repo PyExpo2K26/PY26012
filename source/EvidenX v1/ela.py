@@ -17,4 +17,26 @@ def perform_ela(image_path, quality=90):
         original_cv = cv2.imread(image_path)
         if original_cv is None:
              raise Exception("Could not read image with OpenCV")
+
+        # Save as temporary JPG to induce compression artifacts
+        temp_filename = "temp_ela.jpg"
+        cv2.imwrite(temp_filename, original_cv, [cv2.IMWRITE_JPEG_QUALITY, quality])
+        
+        # Read the compressed image
+        compressed_cv = cv2.imread(temp_filename)
+        
+        # Calculate absolute difference
+        diff = cv2.absdiff(original_cv, compressed_cv)
+        
+        # Convert to grayscale to get the magnitude of difference
+        gray_diff = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
+        
+        # Calculate max difference for scaling
+        max_diff = np.max(gray_diff)
+        if max_diff == 0:
+            scale = 1
+        else:
+            scale = 255.0 / max_diff
+
+
              
