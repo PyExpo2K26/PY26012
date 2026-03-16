@@ -1397,3 +1397,203 @@
                     </div>
                     <div class="method-box">
                         <div class="method-name">Error Level Analysis</div>
+                        <div class="method-result">Pending...</div>
+                    </div>
+                    <div class="method-box">
+                        <div class="method-name">Copy-Move Detection</div>
+                        <div class="method-result">Pending...</div>
+                    </div>
+                    <div class="method-box">
+                        <div class="method-name">CNN Classification</div>
+                        <div class="method-result">Pending...</div>
+                    </div>
+                </div>
+
+                <!-- Explanation Section -->
+                <div id="explanationSection" class="explanation-box" style="display:none;">
+                    <div class="explanation-title">AI Analysis Insights</div>
+                    <ul class="explanation-list" id="explanationList">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
+
+
+                <!-- Blockchain Verification -->
+                <div class="blockchain-section">
+                    <div class="blockchain-title">
+                        Blockchain Verification
+                    </div>
+                    <div class="chain-badge">Verified on Sepolia Testnet</div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Transaction
+                            Hash:
+                        </p>
+                        <div class="tx-hash">
+                            0x7f3a9b2c8d1e4f5g6h7i8j9k0l1m2n3o4p...
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Report Hash
+                            (SHA-256):</p>
+                        <div class="tx-hash">
+                            a3f8d9e2c7b1f4a6c8e0g2i4k6m8o0p...
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+
+                    <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                        <strong>Chain-of-Custody Proof:</strong> This analysis is anchored to the blockchain. The
+                        evidence
+                        cannot be altered or disputed. Perfect for legal proceedings and court admissibility.
+                    </p>
+                    <a href="#"
+                        style="display: inline-block; margin-top: 1rem; color: var(--accent-primary); text-decoration: none; font-weight: 600;">
+                        → View on Blockchain Explorer →
+                    </a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        Download Report
+                    </button>
+                    <button class="btn btn-primary">
+                        Share Results
+                    </button>
+                    <button class="btn btn-secondary">
+                        View Full Analysis
+                    </button>
+                    <button class="btn btn-secondary">
+                        Analyze Another
+                    </button>
+                </div>
+            </div>
+
+            <!-- Privacy Section -->
+            <div class="privacy-section">
+                <div class="privacy-icon">🔒</div>
+                <h2 class="privacy-title">Your Privacy, Our Priority</h2>
+                <p class="privacy-text">
+                    Your files are processed securely and immediately deleted after analysis.
+                    We never store, share, or access your content.
+                </p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Is EvidenX free to use?</div>
+                    <div class="faq-answer">
+                        Yes, EvidenX is currently 100% free for individuals. You can detect AI-generated videos, images,
+                        audio, and text without any cost.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Is my data private and secure?</div>
+                    <div class="faq-answer">
+                        Absolutely. We use local processing technology, meaning your files (photos, videos, audio) are
+                        analyzed directly in your browser and are never uploaded to our servers.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Do I need to sign up?</div>
+                    <div class="faq-answer">
+                        No. EvidenX requires no account, no login, and no credit card. Just open the page and
+                        start verifying.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Can it detect Photoshoped Images?</div>
+                    <div class="faq-answer">
+                        Yes. Our multi-modal engine supports Image verification(Using Heatmaps,etc) to identify
+                        Edited/Altered Images edited by Softwares
+                        like Photoshop,Snapseed,etc.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY PAGE -->
+        <div id="history" class="page">
+            <div class="header">
+                <h1>Analysis History</h1>
+                <p>Your previous forensic analyses</p>
+            </div>
+
+            <div class="history-list" id="historyList">
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>sample_image_01.jpg</h3>
+                        <p>Image | Risk: HIGH (87%) | 2026-01-28 14:35</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>video_sample_02.mp4</h3>
+                        <p>Video | Risk: MEDIUM (65%) | 2026-01-28 13:20</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>audio_sample_03.wav</h3>
+                        <p>Audio | Risk: LOW (22%) | 2026-01-28 12:10</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PAGE -->
+        <div id="settings" class="page">
+            <div class="header">
+                <h1>Settings</h1>
+                <p>Customize your experience</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Dark Mode</strong>
+                            <p>Use dark theme for reduced eye strain</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleDarkMode(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Animations</strong>
+                            <p>Enable smooth transitions and animations</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAnimations(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
