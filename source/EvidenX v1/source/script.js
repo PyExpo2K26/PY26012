@@ -98,4 +98,53 @@
 
         function analyzeAnother() {
             uploadBox.style.opacity = '1';
+            uploadBox.style.pointerEvents = 'auto';
+            document.getElementById('resultsSection').style.display = 'none';
+            [1, 2, 3, 4].forEach(i => {
+                document.getElementById('fill' + i).style.width = '0%';
+                document.getElementById('prog' + i).textContent = '0%';
+            });
+        }
 
+        function viewAnalysis() {
+            alert('Full analysis details would be shown in detailed view');
+        }
+
+        function downloadPDF() {
+            alert('Downloading forensic report...');
+        }
+
+        function deleteRecord() {
+            if (confirm('Delete this analysis?')) {
+                event.target.closest('.history-item').remove();
+                alert('Deleted');
+            }
+        }
+
+        function saveToHistory(filename, type) {
+            const icon = type.includes('image') ? '' : type.includes('video') ? '' : '';
+            const risk = Math.floor(Math.random() * 60 + 30);
+            const now = new Date().toLocaleString();
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+                <div class="history-info">
+                    <h3>${filename}</h3>
+                    <p>${type} | Risk: ${risk}% | ${now}</p>
+                </div>
+                <div class="history-actions">
+                    <button class="btn-small" onclick="viewAnalysis()">View</button>
+                    <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                    <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                </div>
+            `;
+            document.getElementById('historyList').prepend(item);
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
