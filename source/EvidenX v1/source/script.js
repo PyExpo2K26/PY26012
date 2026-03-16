@@ -1,4 +1,3 @@
-        // Page Navigation
         function switchPage(pageName) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageName).classList.add('active');
@@ -7,7 +6,6 @@
             event.target.classList.add('active');
         }
 
-        // File Upload
         const uploadBox = document.getElementById('uploadBox');
         const fileInput = document.getElementById('fileInput');
 
@@ -41,12 +39,10 @@
 
                 startAnalysis();
 
-                // Save to history
                 saveToHistory(file.name, file.type);
             }
         }
 
-        // Simulated Analysis
         function startAnalysis() {
             let progress = [0, 0, 0, 0];
             const interval = setInterval(() => {
@@ -79,7 +75,6 @@
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Utility Functions
         function copyToClipboard(btn) {
             const text = btn.previousElementSibling.textContent;
             navigator.clipboard.writeText(text);
@@ -142,9 +137,56 @@
             document.getElementById('historyList').prepend(item);
         }
 
-        // FAQ Toggle
         function toggleFaq(element) {
             const item = element.parentElement;
             const isActive = item.classList.contains('active');
 
-            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        function toggleTheme() {
+            document.documentElement.style.filter = document.documentElement.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+
+        function toggleDarkMode(el) { el.classList.toggle('active'); }
+        function toggleAnimations(el) { el.classList.toggle('active'); }
+        function toggleNotifications(el) { el.classList.toggle('active'); }
+        function toggleAlerts(el) { el.classList.toggle('active'); }
+        function toggleAutoDelete(el) { el.classList.toggle('active'); }
+        function exportData() { alert('Exporting your data...'); }
+        function clearCache() { alert('Cache cleared'); }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = btn.previousElementSibling.textContent;
+                navigator.clipboard.writeText(hash);
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.textContent.trim();
+                if (text.includes('Download')) {
+                    alert('Downloading PDF report: forensic_analysis_2026-01-28.pdf');
+                } else if (text.includes('Share')) {
+                    alert('Share link copied: https://forgery-detection.app/results/abc123xyz');                        
+                } else if (text.includes('View Full')) {
+                    alert('Full analysis details would be shown in detailed view');
+                } else if (text.includes('Analyze')) {
+                    analyzeAnother();
+                }
+            });
+        });
+
