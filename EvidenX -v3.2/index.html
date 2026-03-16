@@ -2249,3 +2249,162 @@
             const magickTerm = document.getElementById('magickTerminal');
             if (meta.imagemagick) {
  
+                magickTerm.textContent = meta.imagemagick.raw || meta.imagemagick.error || "No data";
+            }
+        }
+
+        function resetProgress() {
+            updateProgressBars([0, 0, 0, 0]);
+        }
+
+        function resetUI() {
+            uploadBox.style.opacity = '1';
+            uploadBox.style.pointerEvents = 'auto';
+            document.getElementById('resultsSection').style.display = 'none';
+
+            // Reset ELA visualization
+            const elaImg = document.getElementById('elaResultImage');
+            const elaOverlay = document.getElementById('elaOverlay');
+            if (elaImg) {
+                elaImg.style.display = 'none';
+                elaImg.src = '';
+            }
+            if (elaOverlay) {
+                elaOverlay.style.display = 'block';
+            }
+
+            // Resume scanning animation
+            const elaWrapper = document.getElementById('elaWrapper');
+            if (elaWrapper) elaWrapper.classList.remove('complete');
+
+            resetProgress();
+        }
+
+        // Utility Functions
+        function copyToClipboard(btn) {
+            const text = btn.previousElementSibling.textContent;
+            navigator.clipboard.writeText(text);
+            const orig = btn.textContent;
+            btn.textContent = 'Copied';
+            setTimeout(() => { btn.textContent = orig; }, 2000);
+        }
+
+        function analyzeAnother() {
+            resetUI();
+        }
+
+        function viewAnalysis() {
+            alert('Full analysis details would be shown in detailed view');
+        }
+
+        function downloadPDF() {
+            alert('Downloading forensic report...');
+        }
+
+        function deleteRecord() {
+            if (confirm('Delete this analysis?')) {
+                event.target.closest('.history-item').remove();
+                alert('Deleted');
+            }
+        }
+
+        function saveToHistory(filename, type, risk) {
+            const riskVal = Math.floor(risk);
+            const now = new Date().toLocaleString();
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+                <div class="history-info">
+                    <h3>${filename}</h3>
+                    <p>${type} | Risk: ${riskVal}% | ${now}</p>
+                </div>
+                <div class="history-actions">
+                    <button class="btn-small" onclick="viewAnalysis()">View</button>
+                    <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                    <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                </div>
+            `;
+            const list = document.getElementById('historyList');
+            if (list) list.prepend(item);
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.style.filter = document.documentElement.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+
+        // Settings Toggles
+        function toggleDarkMode(el) { el.classList.toggle('active'); }
+        function toggleAnimations(el) { el.classList.toggle('active'); }
+        function toggleNotifications(el) { el.classList.toggle('active'); }
+        function toggleAlerts(el) { el.classList.toggle('active'); }
+        function toggleAutoDelete(el) { el.classList.toggle('active'); }
+        function exportData() { alert('Exporting your data...'); }
+        function clearCache() { alert('Cache cleared'); }
+
+        // Event Listeners for new Results Section
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = btn.previousElementSibling.textContent;
+                navigator.clipboard.writeText(hash);
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const text = btn.textContent.trim();
+                // Avoid re-triggering things if it's not the specific button we want
+                // But for now, simple string matching
+                if (text.includes('Download')) {
+                    alert('Downloading PDF report: forensic_analysis_2026-01-28.pdf');
+                } else if (text.includes('Share')) {
+                    alert('Share link copied: https://forgery-detection.app/results/abc123xyz');
+                } else if (text.includes('View Full')) {
+                    alert('Full analysis details would be shown in detailed view');
+                } else if (text.includes('Analyze Another')) {
+                    analyzeAnother();
+                }
+            });
+        });
+
+        // Tab Switching Logic
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show current tab and add active class to button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+
+</html>
