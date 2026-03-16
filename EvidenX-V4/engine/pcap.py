@@ -148,4 +148,53 @@ def analyze_pcap(file_path):
                 }
                 # Add more specific info based on protocol
                 if 'TCP' in pkt:
+                    pkt_info["info"] = f"TCP Port: {pkt.tcp.srcport} -> {pkt.tcp.dstport} [{pkt.tcp.flags_str}]"
+                    if pkt.tcp.flags == '0x00000002': # SYN
+                        syn_packets[pkt.ip.src] += 1
+                elif 'UDP' in pkt:
+                    pkt_info["info"] = f"UDP Port: {pkt.udp.srcport} -> {pkt.udp.dstport}"
+                elif 'ICMP' in pkt:
+                    pkt_info["info"] = f"ICMP Type: {pkt.icmp.type}"
+                    icmp_packets[pkt.ip.src] += 1
+                
+                packet_log.append(pkt_info)
 
+            # --- Timeline Tracking ---
+            if pkt_time:
+                bin_sec = int(pkt_time)
+                timeline_bins[bin_sec] += 1
+                bytes_bins[bin_sec] += int(pkt.length)
+
+            # Domain Tracking (DNS)
+            if 'DNS' in pkt and hasattr(pkt.dns, 'qry_name'):
+                domains.add(pkt.dns.qry_name)
+
+            # Basic "Scanning" detection (very naive: high packet count to many ports)
+            # In a real engine we'd track state, here we'll just increment for demo
+            if packet_count % 100 == 0: # Simulating detection logic
+                suspicious_connections += 1
+
+        cap.close()
+
+        # Finalize Metrics
+        report["metrics"]["total_packets"] = packet_count
+        
+        if first_packet_time and last_packet_time:
+            duration = last_packet_time - first_packet_time
+            report["file_info"]["duration"] = str(datetime.timedelta(seconds=int(duration)))
+            report["file_info"]["recorded"] = datetime.datetime.fromtimestamp(first_packet_time).strftime('%Y-%m-%d %H:%M')
+
+        # Split IPs (Simple heuristic: 192.168.*, 10.*, 172.16-31.* are internal)
+        internal = []
+        external = []
+        for ip in ips:
+            if ip.startswith(('192.168.', '10.', '172.')): # Simplified
+                internal.append(ip)
+            else:
+                external.append(ip)
+        
+        report["metrics"]["internal_hosts"] = len(internal)
+        report["metrics"]["external_hosts"] = len(external)
+        report["metrics"]["unique_ips"] = len(ips)
+        report["metrics"]["unique_domains"] = len(domains)
+        
