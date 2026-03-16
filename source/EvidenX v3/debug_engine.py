@@ -21,12 +21,10 @@ except ImportError as e:
     print(f"Librosa Import Failed: {e}")
 
 print("\n--- Testing Engine Modules ---")
-# Create a dummy image for testing
 import numpy as np
 import cv2
 
 dummy_img_path = "debug_test_image.jpg"
-# Create a simple noise image
 img = np.random.randint(0, 255, (256, 256, 3), dtype=np.uint8)
 cv2.imwrite(dummy_img_path, img)
 print(f"Created {dummy_img_path}")
@@ -51,7 +49,6 @@ except Exception as e:
 try:
     print("\n3. Testing CNN (MesoNet)...")
     from engine.cnn import predict_cnn, load_model
-    # Attempt to load model explicitly
     load_model()
     score, heatmap = predict_cnn(dummy_img_path)
     print(f"CNN Score: {score}")
@@ -59,6 +56,5 @@ try:
 except Exception as e:
     print(f"CNN Failed: {e}")
 
-# Cleanup
 if os.path.exists(dummy_img_path):
     os.remove(dummy_img_path)
