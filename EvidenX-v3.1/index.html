@@ -1697,3 +1697,104 @@
                     </div>
                 </div>
 
+                                <!-- History Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge" style="background: #10b981;">GET</span>
+                        <span class="endpoint-path">/history</span>
+                    </div>
+                    <p class="endpoint-description">Retrieve analysis history</p>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Response:</strong>
+                        <div class="code-block">
+                            {
+                            "analyses": [
+                            {
+                            "id": "analysis_12345",
+                            "filename": "sample.jpg",
+                            "created_at": "2026-01-28T14:35:00Z",
+                            "forgery_score": 0.87
+                            }
+                            ]
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Endpoint -->
+                <div class="api-endpoint">
+                    <div class="endpoint-header">
+                        <span class="method-badge" style="background: #f59e0b;">GET</span>
+                        <span class="endpoint-path">/report/:id</span>
+                    </div>
+                    <p class="endpoint-description">Download forensic report as PDF</p>
+                    <div>
+                        <strong style="color: var(--accent-primary);">Query Parameters:</strong>
+                        <div class="code-block">
+                            ?format=pdf&include_blockchain=true
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>EvidenX v1.0</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Powered by FastAPI + PyTorch + Web3 | © 2026
+        </p>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function switchPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageName).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // File Upload
+        const uploadBox = document.getElementById('uploadBox');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadBox.addEventListener('click', () => fileInput.click());
+
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.classList.add('active');
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.classList.remove('active');
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.classList.remove('active');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                uploadBox.style.opacity = '0.5';
+                uploadBox.style.pointerEvents = 'none';
+
+                // Reset UI
+                resetProgress();
+
+                // Upload and Analyze
+                uploadAndAnalyze(file);
+            }
+        }
+
+
