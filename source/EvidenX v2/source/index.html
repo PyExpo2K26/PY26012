@@ -297,3 +297,103 @@
                 <h1>Analysis History</h1>
                 <p>Your previous forensic analyses</p>
             </div>
+
+             <div class="history-list" id="historyList">
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>sample_image_01.jpg</h3>
+                        <p>Image | Risk: HIGH (87%) | 2026-01-28 14:35</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>video_sample_02.mp4</h3>
+                        <p>Video | Risk: MEDIUM (65%) | 2026-01-28 13:20</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>audio_sample_03.wav</h3>
+                        <p>Audio | Risk: LOW (22%) | 2026-01-28 12:10</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PAGE -->
+        <div id="settings" class="page">
+            <div class="header">
+                <h1>Settings</h1>
+                <p>Customize your experience</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Dark Mode</strong>
+                            <p>Use dark theme for reduced eye strain</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleDarkMode(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Animations</strong>
+                            <p>Enable smooth transitions and animations</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAnimations(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Email Notifications</strong>
+                            <p>Get notified when analysis completes</p>
+                        </div>
+                        <div class="toggle-switch" onclick="toggleNotifications(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>High Risk Alerts</strong>
+                            <p>Alert on suspicious files detected</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAlerts(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>API Configuration</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Infura API Key</strong>
+                            <p>Your blockchain connection</p>
+                        </div>
+                    </div>
+                    <input type="text" class="input-field" placeholder="Enter Infura API Key" id="infuraKey">
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Max File Size (MB)</strong>
+                            <p>Maximum upload size</p>
+                        </div>
+                    </div>
+                    <input type="number" class="input-field" value="100" min="10" max="1000">
+                </div>
