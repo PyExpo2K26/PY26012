@@ -98,3 +98,104 @@
 
         function analyzeAnother() {
             uploadBox.style.opacity = '1';
+ uploadBox.style.pointerEvents = 'auto';
+            document.getElementById('resultsSection').style.display = 'none';
+            [1, 2, 3, 4].forEach(i => {
+                document.getElementById('fill' + i).style.width = '0%';
+                document.getElementById('prog' + i).textContent = '0%';
+            });
+        }
+
+        function viewAnalysis() {
+            alert('Full analysis details would be shown in detailed view');
+        }
+
+        function downloadPDF() {
+            alert('Downloading forensic report...');
+        }
+
+        function deleteRecord() {
+            if (confirm('Delete this analysis?')) {
+                event.target.closest('.history-item').remove();
+                alert('Deleted');
+            }
+        }
+
+        function saveToHistory(filename, type) {
+            const icon = type.includes('image') ? '' : type.includes('video') ? '' : '';
+            const risk = Math.floor(Math.random() * 60 + 30);
+            const now = new Date().toLocaleString();
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+                <div class="history-info">
+                    <h3>${filename}</h3>
+                    <p>${type} | Risk: ${risk}% | ${now}</p>
+                </div>
+                <div class="history-actions">
+                    <button class="btn-small" onclick="viewAnalysis()">View</button>
+                    <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                    <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                </div>
+            `;
+            document.getElementById('historyList').prepend(item);
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.style.filter = document.documentElement.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+
+        // Settings Toggles
+        function toggleDarkMode(el) { el.classList.toggle('active'); }
+        function toggleAnimations(el) { el.classList.toggle('active'); }
+        function toggleNotifications(el) { el.classList.toggle('active'); }
+        function toggleAlerts(el) { el.classList.toggle('active'); }
+        function toggleAutoDelete(el) { el.classList.toggle('active'); }
+        function exportData() { alert('Exporting your data...'); }
+        function clearCache() { alert('Cache cleared'); }
+
+        // Event Listeners for new Results Section
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = btn.previousElementSibling.textContent;
+                navigator.clipboard.writeText(hash);
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.textContent.trim();
+                if (text.includes('Download')) {
+                    alert('Downloading PDF report: forensic_analysis_2026-01-28.pdf');
+                } else if (text.includes('Share')) {
+                    alert('Share link copied: https://forgery-detection.app/results/abc123xyz');
+                } else if (text.includes('View Full')) {
+                    alert('Full analysis details would be shown in detailed view');
+                } else if (text.includes('Analyze')) {
+                    analyzeAnother();
+                }
+            });
+        });
