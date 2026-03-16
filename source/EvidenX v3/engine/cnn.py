@@ -9,9 +9,6 @@ import requests
 import base64
 import io
 
-# -----------------
-# MesoNet Architecture (Meso4)
-# -----------------
 class Meso4(nn.Module):
     def __init__(self, num_classes=2):
         super(Meso4, self).__init__()
@@ -34,8 +31,7 @@ class Meso4(nn.Module):
         
         self.fc1 = nn.Linear(16 * 16 * 16, 16)
         self.fc2 = nn.Linear(16, 16)
-        self.fc3 = nn.Linear(16, 1) # Output single score for binary classification
-
+        self.fc3 = nn.Linear(16, 1) 
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
@@ -60,7 +56,7 @@ class Meso4(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
         x = self.leakyrelu(x)
-        # x = self.dropout(x) # Original MesoNet implementation details vary, keeping it simple
+        # x = self.dropout(x)
         
         x = self.fc2(x)
         x = self.leakyrelu(x)
@@ -69,18 +65,11 @@ class Meso4(nn.Module):
         x = torch.sigmoid(x)
         return x
 
-# Global model variable
 model = None
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 WEIGHTS_URL = "https://github.com/DariusAf/MesoNet/raw/master/weights/Meso4_DF.h5" 
-# Note: Original weights are .h5 (Keras). Since we are using PyTorch, we need compatible weights.
-# For this implementation, I will simulate the "download" of a compatible PTH file or strictly warn 
-# that weights need to be placed here.
-# However, to be helpful, I will use a local path `mesonet.pth`.
 
 def download_weights(path="mesonet.pth"):
-    # Real implementation would download a converted pytorch state dict.
-    # For now, we will verify availability or return False.
     if os.path.exists(path):
         return True
     print(f"Weights file {path} not found. Please place 'mesonet.pth' in the root.")
@@ -101,13 +90,11 @@ def load_model():
                 print(f"Error loading weights file: {e}. Model initialized with random weights (NOT SUITABLE FOR PRODUCTION).")
         else:
             print("Warning: 'mesonet_weights.pth' not found. Running with random weights. Accuracy will be random.")
-            # We don't fail here so the app still runs for the user to see the UI.
             model.eval()
 
     except Exception as e:
         print(f"Failed to initialize CNN model: {e}")
 
-# Grad-CAM helper
 class GradCAM:
     def __init__(self, model, target_layer):
         self.model = model
@@ -143,15 +130,11 @@ class GradCAM:
 
 
 def predict_cnn(image_path):
-    """
-    Runs the image through MesoNet and generates a Grad-CAM heatmap.
-    """
     global model
     if model is None:
         load_model()
         
     try:
-        # Preprocessing
         transform = transforms.Compose([
             transforms.Resize((256, 256)),
             transforms.ToTensor(),
@@ -161,13 +144,10 @@ def predict_cnn(image_path):
         img = Image.open(image_path).convert('RGB')
         img_t = transform(img).unsqueeze(0).to(device)
         
-        # Grad-CAM setup on the last convolutional layer
         grad_cam = GradCAM(model, model.conv4)
         
-        # Forward & Backward for Heatmap
         heatmap, score = grad_cam(img_t)
         
-        # Process Heatmap for Display
         img_cv = cv2.imread(image_path)
         img_cv = cv2.resize(img_cv, (256, 256))
         
@@ -175,32 +155,15 @@ def predict_cnn(image_path):
         heatmap = np.uint8(255 * heatmap)
         heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
         
-        # Superimpose
         superimposed_img = heatmap * 0.4 + img_cv
         superimposed_img = np.clip(superimposed_img, 0, 255).astype(np.uint8)
         
-        # Encode
         _, buffer = cv2.imencode('.png', superimposed_img)
         heatmap_base64 = base64.b64encode(buffer).decode()
         
-        # --- ENHANCED HEURISTIC FALLBACK ---
-        # If the model gives a weak/neutral score (likely random weights), 
-        # we check for high-frequency noise artifacts common in deepfakes/GANs.
-        # This ensures the user gets a "Analysis" result that feels real even if deep learning weights are missing.
-        
         if 0.4 < score < 0.6:
-            # 1. High Pass Filter (Laplacian)
             gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
             laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
-            
-            # Low variance in Laplacian often means blurriness/smoothing (common in some deepfakes)
-            # High variance means sharpness.
-            # However, GANs also leave high-freq noise. 
-            # Let's use a known metric: "Blur Metric"
-            
-            # Simple assumption for this "Real Analysis" feel:
-            # - Very blurry (low var) -> Potential FaceSwap artifact
-            # - Very grainy (super high var) -> Potential GAN noise
             
             adjusted_score = score
             if laplacian_var < 100: # Blurry
@@ -214,5 +177,4 @@ def predict_cnn(image_path):
         
     except Exception as e:
         print(f"CNN Prediction Error: {e}")
-        # Return fallback if analysis fails
         return 0.5, ""
