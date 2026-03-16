@@ -197,3 +197,122 @@ async def analyze_image(file: UploadFile = File(...)):
         })
         
     except Exception as e:
+        if os.path.exists(filename):
+            try:
+                os.remove(filename)
+            except: pass
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+@app.post("/analyze_audio")
+async def analyze_audio_endpoint(file: UploadFile = File(...)):
+    filename = f"temp_audio_{secrets.token_hex(8)}_{file.filename}"
+    try:
+        with open(filename, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        loop = asyncio.get_event_loop()
+        (
+            score,
+            stft_image,
+            mel_image,
+            waveform_image,
+            mfcc_image,
+            chroma_image,
+            attn_image,
+        ) = await loop.run_in_executor(executor, analyze_audio, filename)
+
+        # ── Explainability ────────────────────────────────────────────
+        explanation = []
+        pct = round(score * 100, 1)
+        if score > 0.65:
+            explanation.append(
+                f"LSTM temporal analysis flagged {pct}% deepfake probability "
+                "across spectrogram frames."
+            )
+            explanation.append(
+                "Spectral irregularities and unnatural pitch transitions detected "
+                "(high-attention regions highlighted in the attention map)."
+            )
+        elif score > 0.35:
+            explanation.append(
+                f"Moderate anomaly score ({pct}%). Some spectral features deviate "
+                "from natural speech patterns."
+            )
+        else:
+            explanation.append(
+                f"Audio features appear natural (LSTM score: {pct}%)."
+            )
+
+        if os.path.exists(filename):
+            os.remove(filename)
+
+        return JSONResponse(content={
+            "filename":       file.filename,
+            "fake_probability": pct,
+            # Visualizations
+            "stft_image":     stft_image,       # Traditional STFT spectrogram (NEW)
+            "spectrum_image": mel_image,         # Mel-spectrogram (kept same key for compat)
+            "waveform_image": waveform_image,
+            "mfcc_image":     mfcc_image,
+            "chroma_image":   chroma_image,      # Chromagram (NEW)
+            "attn_image":     attn_image,        # LSTM attention heatmap (NEW)
+            "explanation":    explanation,
+        })
+
+    except Exception as e:
+        if os.path.exists(filename):
+            try:
+                os.remove(filename)
+            except Exception:
+                pass
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+@app.post("/analyze_email")
+async def analyze_email_endpoint(file: UploadFile = File(...)):
+    filename = f"temp_email_{secrets.token_hex(8)}_{file.filename}"
+    try:
+        with open(filename, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        loop = asyncio.get_event_loop()
+        report = await loop.run_in_executor(executor, analyze_email_headers, filename)
+
+        if os.path.exists(filename):
+            os.remove(filename)
+
+        return JSONResponse(content=report)
+
+    except Exception as e:
+        if os.path.exists(filename):
+            try:
+                os.remove(filename)
+            except Exception:
+                pass
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+@app.post("/analyze_pcap")
+async def analyze_pcap_endpoint(file: UploadFile = File(...)):
+    filename = f"temp_pcap_{secrets.token_hex(8)}_{file.filename}"
+    try:
+        with open(filename, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        loop = asyncio.get_event_loop()
+        report = await loop.run_in_executor(executor, analyze_pcap, filename)
+
+        if os.path.exists(filename):
+            os.remove(filename)
+
+        return JSONResponse(content=report)
+
+    except Exception as e:
+        if os.path.exists(filename):
+            try:
+                os.remove(filename)
+            except Exception:
+                pass
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+if __name__ == "__main__":
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)
