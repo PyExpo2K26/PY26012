@@ -98,3 +98,54 @@ def analyze_pcap(file_path):
             except: pass
 
             # Protocol Tracking
+            proto = pkt.highest_layer
+            
+            # If it's just 'DATA' but we have IP, it might be a fragment or unparsed
+            if proto == 'DATA' and 'IP' in pkt:
+                # Try to see if there's anything else interesting
+                for layer in reversed(pkt.layers):
+                    if layer.layer_name not in ['eth', 'ip', 'data', 'DATA']:
+                        proto = layer.layer_name.upper()
+                        break
+            
+            protocols[proto] += 1
+            
+            # Vulnerability Detection: Cleartext
+            if proto in ['HTTP', 'FTP', 'TELNET', 'SMTP']:
+                if proto not in cleartext_protocols:
+                    cleartext_protocols.append(proto)
+
+            # IP Tracking
+            if 'IP' in pkt:
+                src = pkt.ip.src
+                dst = pkt.ip.dst
+                ips[src] += 1
+                ips[dst] += 1
+                
+                # Fragmentation Detection
+                # MF (More Fragments) flag or non-zero fragmentation offset
+                is_fragment = False
+                try:
+                    if hasattr(pkt.ip, 'flags_mf') and pkt.ip.flags_mf == '1':
+                        is_fragment = True
+                    if hasattr(pkt.ip, 'frag_offset') and int(pkt.ip.frag_offset) > 0:
+                        is_fragment = True
+                except: pass
+                
+                if is_fragment:
+                    fragmentation_detected += 1
+
+            # --- Packet Logging (Limit to 500 for performance/memory) ---
+            if packet_count <= 500:
+                pkt_info = {
+                    "no": packet_count,
+                    "time": datetime.datetime.fromtimestamp(pkt_time).strftime('%H:%M:%S.%f')[:-3] if pkt_time else "N/A",
+                    "src": pkt.ip.src if 'IP' in pkt else "N/A",
+                    "dst": pkt.ip.dst if 'IP' in pkt else "N/A",
+                    "proto": proto,
+                    "length": pkt.length,
+                    "info": f"Layer: {pkt.highest_layer}"
+                }
+                # Add more specific info based on protocol
+                if 'TCP' in pkt:
+
