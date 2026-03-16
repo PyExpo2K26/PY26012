@@ -998,3 +998,503 @@
 
         @media (max-width: 768px) {
             .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            background: rgba(10, 15, 20, 0.6);
+            border: 1px solid var(--border);
+            border-top: 1px solid var(--accent-primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .privacy-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 243, 255, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .privacy-icon {
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.8rem;
+            border-radius: 50%;
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        .privacy-title {
+            font-size: 1.4rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .privacy-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 6rem;
+            padding-bottom: 4rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(10, 15, 20, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 243, 255, 0.02);
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+            color: var(--accent-primary);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: var(--text-secondary);
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            /* Adjust as needed */
+            padding-bottom: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">EvidenX</div>
+        <ul class="nav-links">
+            <li><a onclick="switchPage('dashboard')" class="nav-link active">Dashboard</a></li>
+            <li><a onclick="switchPage('history')" class="nav-link">History</a></li>
+            <li><a onclick="switchPage('settings')" class="nav-link">Settings</a></li>
+            <li><a onclick="switchPage('api')" class="nav-link">API Docs</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard" class="page active">
+            <div class="header">
+                <h1>Digital Forgery Detection System</h1>
+                <p>Detect AI-Generated Deepfakes & Digital Forgeries with Blockchain Verification</p>
+                <span class="badge">Powered by ML + CyberForensic + Blockchain</span>
+            </div>
+
+            <div class="main-grid">
+                <!-- Upload Section -->
+                <div>
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon"></div>
+                        <div class="upload-text">
+                            <h3>Drop Your File Here</h3>
+                            <p>or click to browse</p>
+                        </div>
+                        <div class="file-types">
+                            <div class="file-type">Images</div>
+                            <div class="file-type">Videos</div>
+                            <div class="file-type">Audio</div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*,video/*,audio/*">
+                    </div>
+                </div>
+
+                <!-- Analysis Progress -->
+                <div>
+                    <div class="analysis-container">
+                        <div class="analysis-title">
+                            <span class="spinner"></span>
+                            Analyzing Media...
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>EXIF Metadata</span>
+                                <span id="prog1">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill1"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Error Level Analysis</span>
+                                <span id="prog2">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill2"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Copy-Move Detection</span>
+                                <span id="prog3">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill3"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>CNN Classification</span>
+                                <span id="prog4">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="fill4"></div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            Estimated time: 45 seconds
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section">
+                <h2 style="margin-bottom: 1.5rem; color: var(--accent-primary);">Analysis Results</h2>
+
+                <div class="results-grid">
+                    <div class="result-card high-risk">
+                        <div class="label">Overall Forgery Score</div>
+                        <div class="score">87%</div>
+                        <div class="label">Risk Level</div>
+                        <span class="status-badge suspicious">SUSPICIOUS</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">High
+                            probability of
+                            digital forgery detected</p>
+                    </div>
+
+                    <div class="result-card medium-risk">
+                        <div class="label">Confidence Score</div>
+                        <div class="score">82%</div>
+                        <div class="label">Detection Method</div>
+                        <span class="status-badge"
+                            style="background: rgba(245, 158, 11, 0.2); color: var(--warning);">CNN +
+                            ELA</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Multiple
+                            forensic
+                            methods agree</p>
+                    </div>
+
+                    <div class="result-card low-risk">
+                        <div class="label">Authentication Score</div>
+                        <div class="score">13%</div>
+                        <div class="label">Verdict</div>
+                        <span class="status-badge authentic">LIKELY FORGED</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Evidence
+                            strongly
+                            suggests digital manipulation</p>
+                    </div>
+                </div>
+
+                <!-- Forensic Methods -->
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent-primary);">Forensic Analysis
+                    Methods</h3>
+                <div class="methods-grid">
+                    <div class="method-box">
+                        <div class="method-name">EXIF Metadata</div>
+                        <div class="method-result">Inconsistencies Found: 3</div>
+                    </div>
+                    <div class="method-box">
+                        <div class="method-name">Error Level Analysis</div>
+                        <div class="method-result">Suspicious Regions: 5</div>
+                    </div>
+                    <div class="method-box">
+                        <div class="method-name">Copy-Move Detection</div>
+                        <div class="method-result">Cloning Patterns: 2</div>
+                    </div>
+                    <div class="method-box">
+                        <div class="method-name">CNN Classification</div>
+                        <div class="method-result">Deepfake Confidence: 86%</div>
+                    </div>
+                </div>
+
+                <!-- Heatmap -->
+                <div class="heatmap-section">
+                    <div class="heatmap-title">Suspicious Regions Heatmap</div>
+                    <div class="heatmap-container">
+                        <div class="sample-image">
+                            <div class="heatmap-overlay"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem; border-top: 1px solid var(--border);">
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                            <span style="color: var(--danger);"></span> High Risk Zones |
+                            <span style="color: var(--warning);"></span> Medium Risk Zones |
+                            <span style="color: var(--success);"></span> Authentic Regions
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Blockchain Verification -->
+                <div class="blockchain-section">
+                    <div class="blockchain-title">
+                        Blockchain Verification
+                    </div>
+                    <div class="chain-badge">Verified on Sepolia Testnet</div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Transaction
+                            Hash:
+                        </p>
+                        <div class="tx-hash">
+                            0x7f3a9b2c8d1e4f5g6h7i8j9k0l1m2n3o4p...
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Report Hash
+                            (SHA-256):</p>
+                        <div class="tx-hash">
+                            a3f8d9e2c7b1f4a6c8e0g2i4k6m8o0p...
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+
+                    <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                        <strong>Chain-of-Custody Proof:</strong> This analysis is anchored to the blockchain. The
+                        evidence
+                        cannot be altered or disputed. Perfect for legal proceedings and court admissibility.
+                    </p>
+                    <a href="#"
+                        style="display: inline-block; margin-top: 1rem; color: var(--accent-primary); text-decoration: none; font-weight: 600;">
+                        → View on Blockchain Explorer →
+                    </a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        Download Report
+                    </button>
+                    <button class="btn btn-primary">
+                        Share Results
+                    </button>
+                    <button class="btn btn-secondary">
+                        View Full Analysis
+                    </button>
+                    <button class="btn btn-secondary">
+                        Analyze Another
+                    </button>
+                </div>
+            </div>
+
+            <!-- Privacy Section -->
+            <div class="privacy-section">
+                <div class="privacy-icon">🔒</div>
+                <h2 class="privacy-title">Your Privacy, Our Priority</h2>
+                <p class="privacy-text">
+                    Your files are processed securely and immediately deleted after analysis.
+                    We never store, share, or access your content.
+                </p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Is EvidenX free to use?</div>
+                    <div class="faq-answer">
+                        Yes, EvidenX is currently 100% free for individuals. You can detect AI-generated videos, images,
+                        audio, and text without any cost.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Is my data private and secure?</div>
+                    <div class="faq-answer">
+                        Absolutely. We use local processing technology, meaning your files (photos, videos, audio) are
+                        analyzed directly in your browser and are never uploaded to our servers.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Do I need to sign up?</div>
+                    <div class="faq-answer">
+                        No. EvidenX requires no account, no login, and no credit card. Just open the page and
+                        start verifying.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Can it detect Photoshoped Images?</div>
+                    <div class="faq-answer">
+                        Yes. Our multi-modal engine supports Image verification(Using Heatmaps,etc) to identify Edited/Altered Images edited  by Softwares
+                        like Photoshop,Snapseed,etc.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY PAGE -->
+        <div id="history" class="page">
+            <div class="header">
+                <h1>Analysis History</h1>
+                <p>Your previous forensic analyses</p>
+            </div>
+
+            <div class="history-list" id="historyList">
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>sample_image_01.jpg</h3>
+                        <p>Image | Risk: HIGH (87%) | 2026-01-28 14:35</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>video_sample_02.mp4</h3>
+                        <p>Video | Risk: MEDIUM (65%) | 2026-01-28 13:20</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">
+                        <h3>audio_sample_03.wav</h3>
+                        <p>Audio | Risk: LOW (22%) | 2026-01-28 12:10</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn-small" onclick="viewAnalysis()">View</button>
+                        <button class="btn-small" onclick="downloadPDF()">PDF</button>
+                        <button class="btn-small" onclick="deleteRecord()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PAGE -->
+        <div id="settings" class="page">
+            <div class="header">
+                <h1>Settings</h1>
+                <p>Customize your experience</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Dark Mode</strong>
+                            <p>Use dark theme for reduced eye strain</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleDarkMode(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Animations</strong>
+                            <p>Enable smooth transitions and animations</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleAnimations(this)"></div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <strong>Email Notifications</strong>
+                            <p>Get notified when analysis completes</p>
+                        </div>
+                        <div class="toggle-switch" onclick="toggleNotifications(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
