@@ -3,9 +3,6 @@ from PIL.ExifTags import TAGS
 import piexif
 
 def extract_metadata(image_path):
-    """
-    Extracts EXIF metadata and checks for suspicious software signatures.
-    """
     data_report = {
         "Software": "Unknown",
         "DateTime": "Unknown",
@@ -25,7 +22,6 @@ def extract_metadata(image_path):
             
             if tag_name == "Software":
                 data_report["Software"] = str(value)
-                # Heuristic check for editing software
                 suspicious_keywords = ["Adobe", "Photoshop", "GIMP", "Picasa", "Paint", "Editor"]
                 if any(keyword.lower() in str(value).lower() for keyword in suspicious_keywords):
                     data_report["Risk"] = "High"
