@@ -33,23 +33,14 @@ class Block(nn.Module):
         self.relu  = nn.ReLU()
 
     def forward(self, x, t, ):
-        # First Conv
         h = self.bnorm1(self.relu(self.conv1(x)))
-        # Time embedding
         time_emb = self.relu(self.time_mlp(t))
-        # Extend last 2 dimensions
         time_emb = time_emb[(..., ) + (None, ) * 2]
-        # Add time channel
         h = h + time_emb
-        # Second Conv
         h = self.bnorm2(self.relu(self.conv2(h)))
-        # Down or Upsample
         return self.transform(h)
 
 class SimpleUNet(nn.Module):
-    """
-    A simplified UNet for Diffusion Model
-    """
     def __init__(self):
         super().__init__()
         image_channels = 3
@@ -58,22 +49,18 @@ class SimpleUNet(nn.Module):
         out_dim = 3 
         time_emb_dim = 32
 
-        # Time embedding
         self.time_mlp = nn.Sequential(
             SinusoidalPositionEmbeddings(time_emb_dim),
             nn.Linear(time_emb_dim, time_emb_dim),
             nn.ReLU()
         )
         
-        # Initial projection
         self.conv0 = nn.Conv2d(image_channels, down_channels[0], 3, padding=1)
 
-        # Downsample
         self.downs = nn.ModuleList([Block(down_channels[i], down_channels[i+1], \
                                     time_emb_dim) \
                     for i in range(len(down_channels)-1)])
         
-        # Upsample
         self.ups = nn.ModuleList([Block(up_channels[i], up_channels[i+1], \
                                         time_emb_dim, up=True) \
                     for i in range(len(up_channels)-1)])
@@ -81,21 +68,15 @@ class SimpleUNet(nn.Module):
         self.output = nn.Conv2d(up_channels[-1], out_dim, 1)
 
     def forward(self, x, timestep):
-        # Embed time
+
         t = self.time_mlp(timestep)
-        # Initial conv
         x = self.conv0(x)
-        # Unet
         residuals = []
         for down in self.downs:
             x = down(x, t)
             residuals.append(x)
         for up in self.ups:
             residual = residuals.pop()
-            # Add residual (simple concatenation for this dummy block wrapper, actual unet usually doing concatenation)
-            # For simplicity in this structure we just pass x, but ideally we'd concat.
-            # adjusting tensor sizes would be needed.
-            # Simplified forward pass for demonstration without strict shape matching logic
             x = up(x, t)
         return self.output(x)
 
