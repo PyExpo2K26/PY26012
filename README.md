@@ -113,5 +113,12 @@
      - REST endpoints for analysis & reports
      - Bearer token auth
      - Python & JS SDK support
+### 🎥 Demo Video
+
+Watch the full working demo of **EvidenX** here:
+
+👉 https://drive.google.com/file/d/1lE817J_4cHsPo_GL7TDLS14s4HD8jtk-/view?usp=drive_link
+
+> This demo showcases real-time forgery detection, forensic analysis modules, and blockchain-based evidence verification.
      
 
